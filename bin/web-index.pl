@@ -40,6 +40,7 @@ for my $file_name (sort { $a cmp $b } glob "source/web-*.txt") {
     macce => "x-mac-ce",
     vni => "x-viet-vni",
     vps => "x-viet-vps",
+    mns4330 => "x-mns4330",
   }->{$name} // $name;
   print q{":[};
 
