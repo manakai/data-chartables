@@ -32,7 +32,16 @@ for my $file_name (sort { $a cmp $b } glob "source/web-*.txt") {
     }
   }
 
-  print q{"} . $name . q{":[};
+  print q{"};
+  print {
+    armscii8 => 'armscii-8',
+    georgianacademy => "georgian-academy",
+    georgianps => "georgian-ps",
+    macce => "x-mac-ce",
+    vni => "x-viet-vni",
+    vps => "x-viet-vps",
+  }->{$name} // $name;
+  print q{":[};
 
   {
     if (defined $arr[0]) {
