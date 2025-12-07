@@ -31,7 +31,7 @@ TBL_iso8859 = $(RESULT_DIR)isoiec8859_2.tbl $(RESULT_DIR)isoiec8859_3.tbl $(RESU
   $(RESULT_DIR)isoiec8859_14.tbl $(RESULT_DIR)isoiec8859_15.tbl $(RESULT_DIR)isoiec8859_16.tbl \
   $(RESULT_DIR)iso_ir_204.tbl $(RESULT_DIR)iso_ir_205.tbl $(RESULT_DIR)iso_ir_206.tbl
 
-all: jis gb ks kps iso8859 photograph misc cp-all
+all: jis gb ks kps iso8859 photograph misc cp-all web-index
 
 jis:  $(TBL_jis)
 jis-tbl:  $(TBL_jis)
@@ -61,6 +61,10 @@ $(RESULT_DIR)%.ucm: $(RESULT_DIR)%.tbl $(TBL2UCM)
 
 cp-all:
 	cd cp && make all
+
+web-index: generated/web-extra-index.json
+generated/web-extra-index.json: bin/web-index.pl source/web-*.txt
+	$(PERL) bin/web-index.pl > $@
 
 clean:
 	rm -rfv *.BAK .*.BAK *~ .*~
